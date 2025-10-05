@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [project.scripts]
-autoglm = "autoglm_cli.main:app"
+zion = "autoglm_cli.main:app"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
