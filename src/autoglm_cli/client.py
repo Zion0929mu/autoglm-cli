@@ -70,25 +70,30 @@ class AutoGLMClient:
         return self.connected
 
     def send_task(self, instruction: str, conversation_id: str = "") -> bool:
-        if not self.connected:
-            return False
+        payload = self.build_task_payload(instruction, conversation_id)
+        return self.send_payload(payload)
 
-        message = {
+    def build_task_payload(self, instruction: str, conversation_id: str = "") -> dict:
+        return {
             "timestamp": int(time.time() * 1000),
             "conversation_id": conversation_id,
             "msg_type": "client_test",
             "msg_id": "",
             "data": {
                 "biz_type": "test_agent",
-                "instruction": instruction
-            }
+                "instruction": instruction,
+            },
         }
+
+    def send_payload(self, payload: dict) -> bool:
+        if not self.connected:
+            return False
 
         # Log the request if logger is available
         if self.request_logger:
-            self.request_logger(message)
+            self.request_logger(payload)
 
-        self.ws.send(json.dumps(message))
+        self.ws.send(json.dumps(payload))
         return True
 
     def parse_swipe_direction(self, start2end: list) -> str:
