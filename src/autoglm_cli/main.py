@@ -317,21 +317,22 @@ def render_full_usage_guide() -> None:
             "```",
         ),
         (
-            "获取 AutoGLM CLI 源码",
-            "克隆本仓库并进入目录：\n\n"
+            "下载程序本体",
+            "你可以选择直接安装发布版或克隆源码：\n\n"
+            "- 直接安装（推荐）：\n\n"
+            "```bash\n"
+            "pip install autoglm-cli\n"
+            "# 或\n"
+            "uv tool install autoglm-cli\n"
+            "```\n\n"
+            "安装完成后会自动注册 `zion` 命令。\n\n"
+            "- 克隆源码自行安装：\n\n"
             "```bash\n"
             "git clone https://github.com/<your-org>/autoglm-cli.git\n"
             "cd autoglm-cli\n"
-            "```\n\n"
-            "若已安装，可跳过此步骤。",
-        ),
-        (
-            "安装依赖",
-            "在项目根目录执行：\n\n"
-            "```bash\n"
             "uv sync\n"
             "```\n\n"
-            "命令会创建隔离环境并安装所需依赖，后续可通过 `uv run` 运行 CLI。",
+            "如果无法访问 Git，可以从 GitHub Release 下载压缩包解压后执行 `uv sync`。",
         ),
         (
             "准备 API 密钥",
@@ -352,9 +353,9 @@ def render_full_usage_guide() -> None:
             "进入交互模式",
             "执行：\n\n"
             "```bash\n"
-            "uv run zion\n"
+            "zion\n"
             "```\n\n"
-            "随后即可像聊天一样输入任务指令，输入 `exit` 或 `Ctrl+C` 退出。交互模式下可以随时输入 `:guide`、`:docs` 等速查指令。",
+            "如果是在项目目录通过 `uv sync` 安装的版本，可执行 `uv run zion`。随后即可像聊天一样输入任务指令，输入 `exit` 或 `Ctrl+C` 退出。交互模式下可以随时输入 `:guide`、`:docs` 等速查指令。",
         ),
         (
             "发送一次性任务",

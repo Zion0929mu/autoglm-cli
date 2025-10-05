@@ -26,13 +26,34 @@ AUTOGLM_API_KEY=your_api_key
    pip install uv
    ```
 
-2. **获取并安装项目**：克隆仓库后在项目根目录执行安装。
+2. **下载程序本体**：有两种方式可以获取 Zion CLI：
+
+   - **直接安装发布版（推荐）**：
+
+     ```bash
+     pip install autoglm-cli
+     # 或使用 uv 提供的独立安装
+     uv tool install autoglm-cli
+     ```
+
+     安装完成后会在环境中注册 `zion` 命令。
+
+   - **克隆源码自行安装**：如果希望查看或修改源码，可以克隆仓库：
 
    ```bash
    git clone https://github.com/<your-org>/autoglm-cli.git
    cd autoglm-cli
+   ```
+
+   然后在项目目录执行：
+
+   ```bash
    uv sync
    ```
+
+   命令会创建隔离环境并安装所需依赖，后续可通过 `uv run` 运行 CLI。
+
+   若无法访问 Git，可从 GitHub Release 页面下载压缩包（ZIP/TAR），解压后在目录内执行同样的安装命令。
 
 3. **准备 API 密钥**：在 AutoGLM App → 设置 → 开发者计划 申请密钥，可通过环境变量或 `.env` 文件提前配置，或等待 CLI 首次运行时输入。
 
@@ -49,6 +70,10 @@ AUTOGLM_API_KEY=your_api_key
 5. **进入交互模式**：
 
    ```bash
+   # 如果是 pip/uv tool 全局安装，可直接运行
+   zion
+
+   # 如果通过 uv sync 安装在项目目录，可使用
    uv run zion
    ```
 
